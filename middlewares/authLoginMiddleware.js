@@ -8,6 +8,7 @@ const authLogin = async (req, res, next) => {
         if (user) {
             if (bcrypt.compareSync(body.password, user.password)) {
                 res.locals.userId = user._id;
+                res.locals.name = user.name;
                 next();
                 return;
             } else {
