@@ -3,7 +3,8 @@ import { getSession } from "../database/actions.js";
 const authMovimentationMiddleware = async (req, res, next) => {
     try{
         const { authorization } = req.headers;
-        const response = await getSession({token: authorization});
+        const token = authorization.substring(7, authorization.length);
+        const response = await getSession({token});
         if(response){
             res.locals.userId = response.userId;
             next();

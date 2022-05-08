@@ -1,4 +1,4 @@
-import { User, Session, Movimentation } from "./shema.js";
+import { User, Session, Movimentation, Balance } from "./shema.js";
 
 export const getUser = async (body) => {
     try {
@@ -44,12 +44,66 @@ export const unlinkSession = (body) => {
     });
 }
 
+export const setMovimentation = (body) => {
+    Movimentation.create(body).then(() => {
+        console.log('movimentation registred');
+    }).catch((e) => {
+        console.log(e.message);
+    });
+}
+
 export const getMovimentation = async (body) => {
     try{
         const movimentations = await Movimentation.find(body).exec();
         return movimentations;
     }catch(e){
         console.log(e.message);
-    };
+    }
     return [];
+}
+
+export const updateMovimentation = async (body, update) => {
+    try{
+        await Movimentation.findOneAndUpdate(body, update).exec();
+        return true;
+    }catch(e){
+        console.log(e.message);
+    }
+    return false;
+}
+
+export const deleteMovimentation = async (body) => {
+    try{
+        await Movimentation.findOneAndDelete(body).exec();
+        return true;
+    }catch(e){
+        console.log(e.message);
+    }
+    return false;
+}
+
+export const setBalance = (body) => {
+    Balance.create(body).then(() => {
+        console.log('first login');
+    }).catch((e) => {
+        console.log(e.message);
+    });
+}
+
+export const getBalance = async (body) => {
+    try{
+        const balance = await Balance.findOne(body).exec();
+        return balance;
+    }catch(e){
+        console.log(e.message);
+    }
+    return [];
+}
+
+export const updateBalance = async (body, update) => {
+    Balance.findOneAndUpdate(body, update).exec().then(() => {
+        console.log('balance updated');
+    }).catch((e) => {
+        console.log(e.message);
+    });
 }

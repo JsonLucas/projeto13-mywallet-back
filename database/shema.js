@@ -6,13 +6,17 @@ export const User = mongoose.model('user', {
     password: String
 });
 
+export const Balance = mongoose.model('balance', {
+    userId: String,
+    balance: Number
+});
+
 export const Movimentation = mongoose.model('movimentation', {
     userId: String,
     type: Number,
     value: Number,
     description: String,
-    date: String,
-    balance: Number
+    date: String
 })
 
 export const Session = mongoose.model('session', {
