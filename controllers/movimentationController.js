@@ -8,7 +8,6 @@ const movimentationController = async (req, res) => {
         const { balance } = await getBalance({ userId });
         const value = parseInt(action.value);
         const date = dateFormater();
-        console.log(date);
         let updateValue = 0;
         if (action.type === 0) {
             if ((balance - value) < 0) {

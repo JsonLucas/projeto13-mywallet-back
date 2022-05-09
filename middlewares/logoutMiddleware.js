@@ -3,7 +3,6 @@ import { validateToken } from "../utils/uuid.js";
 const authLogoutMiddleware = (req, res, next) => {
     const { authorization } = req.headers;
     const token = authorization.substring(7, authorization.length);
-    console.log(token);
     if(validateToken(token)){
         res.locals.token = token;
         next();

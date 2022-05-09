@@ -4,7 +4,7 @@ export const registersController = async (req, res) => {
     try{
         const {userId} = res.locals;
         const movimentations = await getMovimentation({userId});
-        res.status(200).send(movimentations);
+        res.status(200).send(movimentations.reverse());
         return;
     }catch(e){
         console.log(e.message);
@@ -17,9 +17,9 @@ export const deleteRegisterController = async (req, res) => {
         const { userId } = res.locals;
         const request = await deleteMovimentation({userId});
         if(request){
-            res.sendStatus(200);
+            res.status(200).send('registro excluído.');
         }else{
-            res.sendStatus(404);
+            res.status(404).send('falha ao excluir o registro.');
         }
         return;
     }catch(e){

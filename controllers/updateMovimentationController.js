@@ -13,7 +13,6 @@ const updateMovimentationController = async (req, res) => {
             res.status(400).send('algum erro ocorreu.');
             return;
         }
-        res.sendStatus(200);
     }catch(e){
         console.log(e.message);
         res.status(500).send('internal error.');

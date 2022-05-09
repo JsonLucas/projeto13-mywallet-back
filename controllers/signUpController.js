@@ -5,13 +5,13 @@ export const signUpController = async (req, res) => {
         const body = {
             name: req.body.name,
             email: req.body.email,
-            password: bcrypt.hashSync(req.body.password, 10),
-            movimentations: {}
+            password: bcrypt.hashSync(req.body.password, 10)
         };
         await setUser(body);
         res.status(201).send('usuário cadastrado.');
         return;
     } catch (e) {
         console.log(e.message);
+        res.status(500).send('internal error.');
     }
 };
